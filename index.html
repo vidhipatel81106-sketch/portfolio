@@ -1,103 +1,1132 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vidhi — Personal Profile</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <p class="eyebrow">Personal Profile</p>
-      <h1>Vidhi</h1>
-      <p class="tagline">
-        B.Tech CSE (AI/ML) Student | Aspiring Software Developer
-      </p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vidhi's portfolio featuring Python programming, web development, AI tools, and software projects.">
+    <meta name="author" content="Vidhi">
+    <meta name="theme-color" content="#f5f7ff">
+    <title>Vidhi | Personal Portfolio</title>
 
-      <nav aria-label="Page sections">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-        </ul>
-      </nav>
+    <style>
+        :root {
+            --bg: #f5f7ff;
+            --card: #ffffff;
+            --text: #172033;
+            --muted: #64748b;
+            --primary: #5b5cf0;
+            --border: #e2e8f0;
+            --shadow: 0 8px 28px rgba(30, 41, 59, 0.08);
+            --tag-bg: rgba(91, 92, 240, 0.10);
+        }
 
-      <button type="button" id="theme-toggle" aria-pressed="false">
-        Switch to dark theme
-      </button>
+        body.theme-dark {
+            --bg: #0b1120;
+            --card: #151e30;
+            --text: #f1f5f9;
+            --muted: #a5b4c8;
+            --primary: #a5a6ff;
+            --border: #293449;
+            --shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+            --tag-bg: rgba(165, 166, 255, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 85px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 3px solid var(--primary);
+            outline-offset: 3px;
+        }
+
+        .container {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        header {
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .small-btn,
+        .btn {
+            display: inline-block;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            padding: 9px 14px;
+            background: var(--card);
+            color: var(--text);
+            text-align: center;
+        }
+
+        .small-btn {
+            font-size: 0.9rem;
+        }
+
+        .btn.primary {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        section {
+            padding: 76px 0;
+        }
+
+        .hero {
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(91, 92, 240, 0.13),
+                    transparent 32%
+                );
+        }
+
+        .hero-content {
+            max-width: 760px;
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 7vw, 4.6rem);
+            line-height: 1.12;
+            margin: 12px 0 18px;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 14px;
+        }
+
+        h3 {
+            margin-bottom: 10px;
+        }
+
+        .accent {
+            color: var(--primary);
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            color: var(--muted);
+            max-width: 700px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading p,
+        .muted {
+            color: var(--muted);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-grid,
+        .skills-grid,
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .skills-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 14px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--tag-bg);
+            color: var(--primary);
+            border-radius: 30px;
+            padding: 5px 11px;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        /* Project search and filter controls */
+        .project-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .project-tools input {
+            flex: 1;
+            min-width: 220px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: var(--card);
+            color: var(--text);
+        }
+
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .filter-chip {
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 8px 16px;
+            background: var(--card);
+            color: var(--text);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .filter-chip:hover {
+            border-color: var(--primary);
+        }
+
+        .filter-chip.is-active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .filter-status {
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin-bottom: 20px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .project-card p {
+            color: var(--muted);
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: auto;
+            padding-top: 8px;
+            font-weight: 700;
+        }
+
+        .project-card[hidden],
+        .project-card.is-hidden {
+            display: none !important;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .contact-list li {
+            margin: 12px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .chat-messages {
+            min-height: 110px;
+            max-height: 260px;
+            overflow-y: auto;
+            margin: 15px 0;
+        }
+
+        .message {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            overflow-wrap: anywhere;
+        }
+
+        .chat-form {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-form input {
+            flex: 1;
+            width: 100%;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: var(--card);
+            color: var(--text);
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 25px 0;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        @media (max-width: 800px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                padding: 20px 5%;
+                background: var(--card);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav.is-open {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: inline-block;
+            }
+        }
+
+        @media (max-width: 600px) {
+            section {
+                padding: 55px 0;
+            }
+
+            .about-grid,
+            .skills-grid,
+            .project-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .card {
+                padding: 19px;
+            }
+
+            .chat-form {
+                flex-direction: column;
+            }
+
+            .project-tools input {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container navbar">
+            <a class="logo" href="#home">
+                Vidhi<span class="accent">.</span>
+            </a>
+
+            <nav id="site-nav" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button
+                    class="small-btn"
+                    id="theme-toggle"
+                    type="button"
+                    aria-label="Switch to dark theme"
+                    aria-pressed="false">
+                    Switch to dark theme
+                </button>
+
+                <button
+                    class="small-btn menu-btn"
+                    id="nav-toggle"
+                    type="button"
+                    aria-label="Toggle navigation"
+                    aria-expanded="false">
+                    ☰
+                </button>
+            </div>
+        </div>
     </header>
 
     <main>
-      <section id="about" aria-labelledby="about-heading">
-        <h2 id="about-heading">About Me</h2>
-        <p>
-          I am a B.Tech Computer Science student specializing in Artificial
-          Intelligence and Machine Learning. I am interested in programming,
-          web development, and exploring how technology can solve real-world
-          problems.
-        </p>
-        <p>
-          I am continuously improving my technical knowledge through
-          coursework, practical assignments, and personal projects. My goal
-          is to develop my programming skills and build useful, user-friendly
-          applications.
-        </p>
-      </section>
+        <section class="hero" id="home">
+            <div class="container hero-content">
+                <p class="eyebrow">Welcome to my portfolio</p>
 
-      <section id="skills" aria-labelledby="skills-heading">
-        <h2 id="skills-heading">Skills</h2>
-        <ul>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-          <li>Python</li>
-          <li>C++</li>
-        </ul>
-      </section>
+                <h1>Hi, I'm <span class="accent">Vidhi</span></h1>
 
-      <section id="projects" aria-labelledby="projects-heading">
-        <h2 id="projects-heading">Projects</h2>
-        <ul class="project-list">
-          <li>
-            <strong>Personal Portfolio Website</strong>
-            <p>
-              A personal webpage designed to showcase my introduction,
-              technical skills, and projects.
-            </p>
-            <p>Project link: https://github.com/vidhipatel81106-sketch?tab=repositories.</p>
-          </li>
-          <li>
-            <strong>Reading List App</strong>
-            <p>
-              A web application concept for organizing books and keeping
-              track of reading progress.
-            </p>
-            <p>Status: Learning project.</p>
-          </li>
-          <li>
-            <strong>Student Management System</strong>
-            <p>
-              A project idea for organizing student information and
-              academic records.
-            </p>
-            <p>Status: Planned project.</p>
-          </li>
-        </ul>
-      </section>
+                <p class="lead">
+                    B.Tech CSE (AI/ML) Student | Aspiring Software Developer
+                </p>
+
+                <p class="muted" style="margin-top: 15px;">
+                    I enjoy programming, building web applications, improving code,
+                    and exploring how AI tools can make development easier.
+                </p>
+
+                <div class="hero-buttons">
+                    <a class="btn primary" href="#projects">
+                        Explore My Projects
+                    </a>
+
+                    <a class="btn" href="#contact">
+                        Contact Me
+                    </a>
+
+                    <a
+                        class="btn"
+                        href="https://github.com/vidhipatel81106-sketch"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        My GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">A little about me</p>
+                    <h2>About Me</h2>
+                    <p>My interests, learning journey, and goals.</p>
+                </div>
+
+                <div class="about-grid">
+                    <article class="card">
+                        <h3>Who I Am</h3>
+                        <p class="muted">
+                            I am a B.Tech Computer Science student specializing
+                            in Artificial Intelligence and Machine Learning.
+                            I am interested in Python programming, web development,
+                            and solving programming problems through practical projects.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>My Goals</h3>
+                        <p class="muted">
+                            My goal is to strengthen my programming fundamentals,
+                            write cleaner code, build useful applications, and
+                            develop the skills needed to become a software developer.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">What I'm learning</p>
+                    <h2>Skills &amp; Technologies</h2>
+                    <p>Tools and topics I work with in my projects.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <article class="card">
+                        <h3>Programming</h3>
+                        <p class="muted">
+                            Writing programs and solving problems.
+                        </p>
+                        <div class="skill-list">
+                            <span class="tag">Python</span>
+                            <span class="tag">Problem Solving</span>
+                            <span class="tag">Debugging</span>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <h3>Web Development</h3>
+                        <p class="muted">
+                            Building interactive web interfaces.
+                        </p>
+                        <div class="skill-list">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <h3>AI &amp; Developer Tools</h3>
+                        <p class="muted">
+                            Exploring tools that support coding.
+                        </p>
+                        <div class="skill-list">
+                            <span class="tag">AI Tools</span>
+                            <span class="tag">Cursor AI</span>
+                            <span class="tag">GitHub</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">What I've built</p>
+                    <h2>My Projects</h2>
+                    <p>
+                        Explore my programming practice and interactive applications.
+                    </p>
+                </div>
+
+                <div class="project-tools">
+                    <input
+                        type="search"
+                        id="project-search"
+                        placeholder="Search projects by name or technology..."
+                        aria-label="Search projects">
+                </div>
+
+                <div class="filter-chips" aria-label="Filter projects by category">
+                    <button
+                        class="filter-chip is-active"
+                        type="button"
+                        data-filter="all"
+                        aria-pressed="true">
+                        All Projects
+                    </button>
+
+                    <button
+                        class="filter-chip"
+                        type="button"
+                        data-filter="python"
+                        aria-pressed="false">
+                        Python
+                    </button>
+
+                    <button
+                        class="filter-chip"
+                        type="button"
+                        data-filter="web"
+                        aria-pressed="false">
+                        Web Development
+                    </button>
+
+                    <button
+                        class="filter-chip"
+                        type="button"
+                        data-filter="ai"
+                        aria-pressed="false">
+                        AI &amp; Code Improvement
+                    </button>
+                </div>
+
+                <p
+                    id="filter-status"
+                    class="filter-status"
+                    role="status"
+                    aria-live="polite">
+                    5 projects shown.
+                </p>
+
+                <div class="project-grid">
+                    <article
+                        class="card project-card"
+                        data-name="Python Programs Collection"
+                        data-tech="python programming practice">
+
+                        <div><span class="tag">Python</span></div>
+
+                        <h3>Python Programs Collection</h3>
+
+                        <p>
+                            A collection of Python programs created to practise
+                            programming concepts and problem-solving techniques.
+                        </p>
+
+                        <div class="project-links">
+                            <a
+                                href="https://github.com/vidhipatel81106-sketch/python-program-collection-"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                View Code ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article
+                        class="card project-card"
+                        data-name="Messy Python Code Improvement"
+                        data-tech="python ai code improvement refactoring">
+
+                        <div><span class="tag">Python</span></div>
+
+                        <h3>Messy Python Code Improvement</h3>
+
+                        <p>
+                            A project focused on improving code readability,
+                            organization, and maintainability.
+                        </p>
+
+                        <div class="project-links">
+                            <a
+                                href="https://github.com/vidhipatel81106-sketch/messy-python-code-improvement-"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                View Code ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article
+                        class="card project-card"
+                        data-name="Bug Fixing Using Cursor AI"
+                        data-tech="ai python debugging cursor code improvement">
+
+                        <div><span class="tag">AI &amp; Debugging</span></div>
+
+                        <h3>Bug Fixing Using Cursor AI</h3>
+
+                        <p>
+                            An exploration of AI-assisted debugging and code
+                            improvement using Cursor AI.
+                        </p>
+
+                        <div class="project-links">
+                            <a
+                                href="https://github.com/vidhipatel81106-sketch/bug-fixing-using-cursor-ai-"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                View Code ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article
+                        class="card project-card"
+                        data-name="Code With AI Quiz"
+                        data-tech="web html css javascript quiz application">
+
+                        <div><span class="tag">Web Development</span></div>
+
+                        <h3>Code With AI Quiz</h3>
+
+                        <p>
+                            An interactive quiz application where users can answer
+                            questions and see their final score.
+                        </p>
+
+                        <div class="project-links">
+                            <a
+                                href="https://github.com/vidhipatel81106-sketch/Quiz-#quiz-"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                GitHub ↗
+                            </a>
+
+                            <a
+                                href="https://quiz-three-nu-38.vercel.app/"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                Live Demo ↗
+                            </a>
+                        </div>
+                    </article>
+
+                    <article
+                        class="card project-card"
+                        data-name="Book Reading List"
+                        data-tech="web html css javascript books reading tracker">
+
+                        <div><span class="tag">Web Development</span></div>
+
+                        <h3>Book Reading List</h3>
+
+                        <p>
+                            A reading-list application for organizing books and
+                            keeping track of a personal reading collection.
+                        </p>
+
+                        <div class="project-links">
+                            <a
+                                href="https://github.com/vidhipatel81106-sketch/book-reading-list-"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                GitHub ↗
+                            </a>
+
+                            <a
+                                href="https://book-reading-list-fzk6trrj5-v-f952.vercel.app/"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                Live Demo ↗
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Let's connect</p>
+                    <h2>Contact Me</h2>
+                    <p>
+                        Have a question about my projects? Feel free to reach out.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <article class="card">
+                        <h3>Contact Information</h3>
+
+                        <ul class="contact-list">
+                            <li>
+                                <strong>Email:</strong>
+                                <a href="mailto:vidhipatel.81106@gmail.com">
+                                    vidhipatel.81106@gmail.com
+                                </a>
+                            </li>
+
+                            <li>
+                                <strong>GitHub:</strong>
+                                <a
+                                    href="https://github.com/vidhipatel81106-sketch"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    View All My Repositories
+                                </a>
+                            </li>
+                        </ul>
+
+                        <p class="muted" style="margin-top: 18px;">
+                            I'm interested in learning, collaborating on projects,
+                            and exploring new programming ideas.
+                        </p>
+                    </article>
+
+                    <article class="card" id="chatbot">
+                        <h3>Portfolio Assistant</h3>
+
+                        <p class="muted">
+                            Ask a quick question about my skills or projects.
+                        </p>
+
+                        <div
+                            class="chat-messages"
+                            id="chat-messages"
+                            aria-live="polite">
+
+                            <div class="message">
+                                Hi! I'm Vidhi's portfolio assistant. Ask me about
+                                projects, skills, or contact details.
+                            </div>
+                        </div>
+
+                        <form class="chat-form" id="chat-form">
+                            <input
+                                type="text"
+                                id="chat-input"
+                                placeholder="Type your question..."
+                                aria-label="Your question"
+                                required>
+
+                            <button class="btn primary" type="submit">
+                                Send
+                            </button>
+                        </form>
+
+                        <p
+                            class="muted"
+                            style="font-size: 0.82rem; margin-top: 10px;">
+                            This is a local FAQ assistant, not a live AI service.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-      <p>
-        &copy; <span id="year"></span> Vidhi.
-        Contact:
-        <a href="mailto:vid081106@.com">
-          Add your email address
-        </a>
-      </p>
+        <div class="container">
+            <p>
+                © <span id="year"></span> Vidhi.
+                Built with HTML, CSS, and JavaScript.
+            </p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
-  </body>
-</html>
+    <script>
+        (function () {
+            // Automatically update the footer year.
+            const yearEl = document.getElementById("year");
 
+            if (yearEl) {
+                yearEl.textContent = String(new Date().getFullYear());
+            }
+
+            // Dark/light theme with saved preference.
+            const toggle = document.getElementById("theme-toggle");
+            let storedTheme = null;
+
+            try {
+                storedTheme = window.localStorage.getItem("profile-theme");
+            } catch (error) {
+                // The theme toggle still works if storage is unavailable.
+            }
+
+            function applyTheme(theme) {
+                const isDark = theme === "dark";
+
+                document.body.classList.toggle("theme-dark", isDark);
+
+                if (toggle) {
+                    toggle.setAttribute("aria-pressed", String(isDark));
+                    toggle.textContent = isDark
+                        ? "Switch to light theme"
+                        : "Switch to dark theme";
+                }
+            }
+
+            applyTheme(storedTheme === "dark" ? "dark" : "light");
+
+            if (toggle) {
+                toggle.addEventListener("click", function () {
+                    const next = document.body.classList.contains("theme-dark")
+                        ? "light"
+                        : "dark";
+
+                    try {
+                        window.localStorage.setItem("profile-theme", next);
+                    } catch (error) {
+                        // Theme switching still works for this page session.
+                    }
+
+                    applyTheme(next);
+                });
+            }
+
+            // Mobile navigation.
+            const navToggle = document.getElementById("nav-toggle");
+            const siteNav = document.getElementById("site-nav");
+
+            if (navToggle && siteNav) {
+                navToggle.addEventListener("click", function () {
+                    const open = siteNav.classList.toggle("is-open");
+
+                    navToggle.setAttribute("aria-expanded", String(open));
+                });
+
+                siteNav.querySelectorAll("a").forEach(function (link) {
+                    link.addEventListener("click", function () {
+                        siteNav.classList.remove("is-open");
+                        navToggle.setAttribute("aria-expanded", "false");
+                    });
+                });
+            }
+
+            // Project search and category chips.
+            const searchInput = document.getElementById("project-search");
+            const statusEl = document.getElementById("filter-status");
+
+            const cards = Array.prototype.slice.call(
+                document.querySelectorAll(".project-card")
+            );
+
+            const chips = Array.prototype.slice.call(
+                document.querySelectorAll(".filter-chip")
+            );
+
+            let activeFilter = "all";
+
+            function normalize(value) {
+                return String(value || "")
+                    .toLowerCase()
+                    .trim();
+            }
+
+            function updateProjects() {
+                const query = normalize(searchInput ? searchInput.value : "");
+                let visible = 0;
+
+                cards.forEach(function (card) {
+                    const name = normalize(card.getAttribute("data-name"));
+                    const tech = normalize(card.getAttribute("data-tech"));
+                    const haystack = name + " " + tech;
+
+                    const matchesQuery =
+                        !query || haystack.indexOf(query) !== -1;
+
+                    const matchesFilter =
+                        activeFilter === "all" ||
+                        tech.split(/\s+/).indexOf(activeFilter) !== -1;
+
+                    const show = matchesQuery && matchesFilter;
+
+                    card.classList.toggle("is-hidden", !show);
+                    card.hidden = !show;
+
+                    if (show) {
+                        visible += 1;
+                    }
+                });
+
+                if (statusEl) {
+                    statusEl.textContent =
+                        visible === 0
+                            ? "No projects match this search or filter."
+                            : visible + " project" +
+                              (visible === 1 ? "" : "s") + " shown.";
+                }
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener("input", updateProjects);
+            }
+
+            chips.forEach(function (chip) {
+                chip.addEventListener("click", function () {
+                    activeFilter = normalize(
+                        chip.getAttribute("data-filter")
+                    );
+
+                    chips.forEach(function (item) {
+                        const isActive = item === chip;
+
+                        item.classList.toggle("is-active", isActive);
+                        item.setAttribute("aria-pressed", String(isActive));
+                    });
+
+                    updateProjects();
+                });
+            });
+
+            updateProjects();
+
+            // Simple local FAQ assistant. This is not a live AI service.
+            const chatForm = document.getElementById("chat-form");
+            const chatInput = document.getElementById("chat-input");
+            const chatMessages = document.getElementById("chat-messages");
+
+            function addMessage(text, sender) {
+                if (!chatMessages) return;
+
+                const message = document.createElement("div");
+                message.className = "message";
+                message.textContent =
+                    (sender === "user" ? "You: " : "Assistant: ") + text;
+
+                chatMessages.appendChild(message);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function getReply(question) {
+                const q = normalize(question);
+
+                if (/\b(hello|hi|hey)\b/.test(q)) {
+                    return "Hello! Welcome to Vidhi's portfolio. What would you like to know?";
+                }
+
+                if (q.includes("project") || q.includes("work")) {
+                    return "There are five featured projects: Python Programs Collection, Messy Python Code Improvement, Bug Fixing Using Cursor AI, Code With AI Quiz, and Book Reading List. Visit the Projects section to explore them.";
+                }
+
+                if (q.includes("quiz")) {
+                    return "The Code With AI Quiz is an interactive quiz application. Use its Live Demo link in the Projects section.";
+                }
+
+                if (q.includes("book") || q.includes("reading")) {
+                    return "The Book Reading List project helps organize a personal reading collection. Its GitHub repository and live demo are listed in Projects.";
+                }
+
+                if (q.includes("python")) {
+                    return "Python is featured in the programming collection and code improvement projects. Check the Projects section for the source code.";
+                }
+
+                if (
+                    q.includes("skill") ||
+                    q.includes("technology") ||
+                    q.includes("language")
+                ) {
+                    return "The portfolio highlights Python, HTML, CSS, JavaScript, GitHub, AI tools, and debugging.";
+                }
+
+                if (q.includes("email") || q.includes("contact")) {
+                    return "You can contact Vidhi at vidhipatel.81106@gmail.com. You can also visit the GitHub profile linked in the Contact section.";
+                }
+
+                if (
+                    q.includes("github") ||
+                    q.includes("repository") ||
+                    q.includes("repo")
+                ) {
+                    return "Visit https://github.com/vidhipatel81106-sketch to explore Vidhi's GitHub repositories.";
+                }
+
+                if (q.includes("ai") || q.includes("cursor")) {
+                    return "The portfolio includes a Bug Fixing Using Cursor AI project that explores AI-assisted debugging.";
+                }
+
+                return "I can answer basic questions about projects, Python, skills, GitHub, and contact details. Try asking about one of those topics.";
+            }
+
+            if (chatForm && chatInput && chatMessages) {
+                chatForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const question = chatInput.value.trim();
+
+                    if (!question) return;
+
+                    addMessage(question, "user");
+                    addMessage(getReply(question), "assistant");
+
+                    chatInput.value = "";
+                    chatInput.focus();
+                });
+            }
+
+            // Handle placeholder links only if any are added later.
+            document.querySelectorAll('a[href^="PLACEHOLDER"]').forEach(
+                function (link) {
+                    link.addEventListener("click", function (event) {
+                        event.preventDefault();
+
+                        window.alert(
+                            "This is a placeholder link. Replace it in index.html with the real URL when you have it.\n\n" +
+                            link.getAttribute("href")
+                        );
+                    });
+                }
+            );
+        })();
+    </script>
+</body>
+</html>
