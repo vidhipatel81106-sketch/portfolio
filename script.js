@@ -26,3 +26,4 @@
     });
   }
 })();
+console.log("JavaScript connected");
