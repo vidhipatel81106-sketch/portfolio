@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="chatbot.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Vidhi's portfolio featuring Python programming, web development, AI tools, and software projects.">
@@ -831,42 +832,31 @@
                         </p>
                     </article>
 
-                    <article class="card" id="chatbot">
+                    
+                    <article class="card chatbot-section" id="chatbot">
                         <h3>Portfolio Assistant</h3>
-
-                        <p class="muted">
-                            Ask a quick question about my skills or projects.
-                        </p>
-
-                        <div
-                            class="chat-messages"
-                            id="chat-messages"
-                            aria-live="polite">
-
-                            <div class="message">
-                                Hi! I'm Vidhi's portfolio assistant. Ask me about
-                                projects, skills, or contact details.
-                            </div>
+                        <p class="muted">Ask a quick question about my skills or projects.</p>
+                    
+                        <div class="chat-messages" id="chatMessages" aria-live="polite">
+                            <p class="bot-message">
+                                Hello! Ask me something about this portfolio.
+                            </p>
                         </div>
-
-                        <form class="chat-form" id="chat-form">
+                    
+                        <form class="chat-form" id="chatForm">
                             <input
                                 type="text"
-                                id="chat-input"
+                                id="chatInput"
                                 placeholder="Type your question..."
                                 aria-label="Your question"
-                                required>
-
-                            <button class="btn primary" type="submit">
+                                required
+                            >
+                            <button class="btn primary" id="chatSend" type="submit">
                                 Send
                             </button>
                         </form>
-
-                        <p
-                            class="muted"
-                            style="font-size: 0.82rem; margin-top: 10px;">
-                            This is a local FAQ assistant, not a live AI service.
-                        </p>
+                    
+                        <p id="chatStatus" class="muted" aria-live="polite"></p>
                     </article>
                 </div>
             </div>
@@ -1127,6 +1117,25 @@
             );
         })();
     </script>
+    
+    <script src="chatbot.js"></script>
+    <section class="weather-section" id="weather">
+        <h2>Live Weather Checker</h2>
+        <p>Enter a city to check its current weather.</p>
+    
+        <div class="weather-controls">
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter city name"
+            >
+            <button id="weatherButton">Get Weather</button>
+        </div>
+    
+        <p id="weatherResult">
+            Enter a city and click Get Weather.
+        </p>
+    </section>
 </body>
 </html>
 
