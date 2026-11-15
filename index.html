@@ -1102,7 +1102,6 @@
                 });
             }
 
-            // Handle placeholder links only if any are added later.
             document.querySelectorAll('a[href^="PLACEHOLDER"]').forEach(
                 function (link) {
                     link.addEventListener("click", function (event) {
@@ -1117,28 +1116,20 @@
             );
         })();
     </script>
-    
-    <script src="chatbot.js"></script>
+
     <section class="weather-section" id="weather">
         <h2>Live Weather Checker</h2>
         <p>Enter a city to check its current weather.</p>
-    
+
         <div class="weather-controls">
-            <input
-                type="text"
-                id="cityInput"
-                placeholder="Enter city name"
-            >
+            <input type="text" id="cityInput" placeholder="Enter city name">
             <button id="weatherButton">Get Weather</button>
         </div>
-    
-        <p id="weatherResult">
-            Enter a city and click Get Weather.
-        </p>
+
+        <p id="weatherResult">Enter a city and click Get Weather.</p>
     </section>
+
+    <script src="chatbot.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
